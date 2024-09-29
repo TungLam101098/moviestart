@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { ImageBackground, StyleSheet, View } from 'react-native';
 import { H1, Image, ScrollView, YStack, Text, Paragraph } from 'tamagui';
+import Animated from 'react-native-reanimated';
 
 import { MediaType } from '~/interfaces/apiresult';
 import { getMovieDetails } from '~/services/api';
@@ -11,10 +12,10 @@ interface DetailsPageProps {
   mediaType: MediaType;
 }
 
-const DetailsPage = ({ id }: DetailsPageProps) => {
+const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
   const movieQuery = useQuery({
     queryKey: ['movie', id],
-    queryFn: () => getMovieDetails(Number(id), MediaType.Movie),
+    queryFn: () => getMovieDetails(+id, mediaType),
   });
 
   return (
@@ -22,12 +23,15 @@ const DetailsPage = ({ id }: DetailsPageProps) => {
       <ScrollView>
         <ImageBackground
           source={{ uri: `https://image.tmdb.org/t/p/w400${movieQuery.data?.backdrop_path}` }}>
-          <Image
+          <Animated.Image
             source={{ uri: `https://image.tmdb.org/t/p/w400${movieQuery.data?.poster_path}` }}
-            w={200}
-            h={300}
-            m={20}
+            style={{
+              width: 200,
+              height: 300,
+              margin: 10,
+            }}
             borderRadius={6}
+            // sharedTransitionTag={`${mediaType === 'movie' ? 'movie' : 'tv'}-${id}`}
           />
         </ImageBackground>
         <YStack

@@ -65,6 +65,7 @@ const Page = () => {
       )}
       <ScrollView
         horizontal
+        maxWidth="1280"
         showsHorizontalScrollIndicator={false}
         py={40}
         contentContainerStyle={{ gap: 14, paddingLeft: 14 }}>

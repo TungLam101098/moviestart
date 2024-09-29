@@ -25,6 +25,7 @@ export interface ResultItem {
   first_air_date: string;
   origin_country: string[];
   tagline: string;
+  media_type: MediaType;
 }
 
 export enum MediaType {
