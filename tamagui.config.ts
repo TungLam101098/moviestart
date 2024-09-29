@@ -35,14 +35,15 @@ export const Container = styled(YStack, {
 });
 
 export const Main = styled(YStack, {
-  flex: 1,
+  // flex: 1,
   justifyContent: 'space-between',
-  maxWidth: 960,
+  // maxWidth: 960,
 });
 
 export const Title = styled(H1, {
   color: '#000',
   size: '$12',
+  fontWeight: '600',
 });
 
 export const Subtitle = styled(SizableText, {
